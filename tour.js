@@ -13,7 +13,11 @@
     {
       title: 'Teckenlista',
       selector: '#glyphGrid',
-      body: "Välj vilket tecken du ritar här. Pricken visar status. För export måste alla ‘required’ tecken bli klara.",
+      body:
+        "Välj vilket tecken du ritar här. Pricken visar status.\n\n" +
+        "För att kunna bygga preview OCH exportera (ladda ner) måste alla obligatoriska tecken vara klara:\n" +
+        "A-Z, a-z, 0-9, ÅÄÖ, åäö.\n\n" +
+        "Övriga tecken är valfria (ingår i fonten men kan vara tomma): mellanslag och . , ! ? - ( )",
     },
     {
       title: 'Verktyg per tecken',
@@ -44,7 +48,10 @@
       title: 'Export (ladda ner font)',
       selector: '#btnExportOTF',
       body:
-        "När alla required tecken är klara: tryck Export OTF för att ladda ner fontfilen. Om något saknas får du en lista på exakt vilka tecken som saknas. (Preview-font är valfri och byggs med ‘Build preview font’.)",
+        "När alla obligatoriska tecken är klara kan du ladda ner fontfilen via Export OTF.\n\n" +
+        "Minimikrav (gäller både Preview och Export): A-Z, a-z, 0-9, ÅÄÖ, åäö.\n" +
+        "Om något saknas får du en lista på exakt vilka tecken som saknas.\n\n" +
+        "Preview-font är valfri och byggs med ‘Build preview font’.",
       isLast: true,
     },
   ];
