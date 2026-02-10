@@ -142,6 +142,8 @@
     let currentCp = 'A'.codePointAt(0);
     let previewFontHandle = null;
     const LS_EDITOR_SIZE = 'fontmaker_editor_size_px';
+    const EDITOR_SIZE_MIN = 240;
+    const EDITOR_SIZE_MAX = 900;
 
     const elFontName = document.getElementById('fontName');
     const elIntro = document.getElementById('btnIntro');
@@ -190,7 +192,7 @@
     }
 
     function applyEditorSizePx(px) {
-      const v = clamp(Number(px) || 780, 240, 900);
+      const v = clamp(Number(px) || 780, EDITOR_SIZE_MIN, EDITOR_SIZE_MAX);
       document.documentElement.style.setProperty('--editorSize', v + 'px');
       if (elEditorSizeValue) elEditorSizeValue.textContent = v + 'px';
       if (elEditorSize) elEditorSize.value = String(v);
@@ -287,6 +289,9 @@
     });
 
     if (elEditorSize) {
+      // If the HTML is cached, enforce the expected slider range at runtime.
+      elEditorSize.min = String(EDITOR_SIZE_MIN);
+      elEditorSize.max = String(EDITOR_SIZE_MAX);
       elEditorSize.addEventListener('input', () => {
         applyEditorSizePx(Number(elEditorSize.value));
       });
