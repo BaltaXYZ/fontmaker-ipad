@@ -143,6 +143,7 @@
     let previewFontHandle = null;
 
     const elFontName = document.getElementById('fontName');
+    const elIntro = document.getElementById('btnIntro');
     const elGrid = document.getElementById('glyphGrid');
     const elCurrentChar = document.getElementById('currentChar');
     const elCurrentMeta = document.getElementById('currentMeta');
@@ -269,6 +270,12 @@
       ProjectIO.exportProject(project);
     });
 
+    if (elIntro) {
+      elIntro.addEventListener('click', () => {
+        if (window.Tour && typeof window.Tour.startIntro === 'function') window.Tour.startIntro({ force: true });
+      });
+    }
+
     document.getElementById('btnImportProject').addEventListener('click', () => {
       elFileImport.value = '';
       elFileImport.click();
@@ -351,6 +358,13 @@
     renderHeader();
     editor.setGlyph(currentGlyph(), project.metrics);
     syncControlsFromGlyph();
+
+    // Start intro tour on first visit after initial layout has settled.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (window.Tour && typeof window.Tour.maybeStartIntro === 'function') window.Tour.maybeStartIntro();
+      });
+    });
   }
 
   window.addEventListener('DOMContentLoaded', main);

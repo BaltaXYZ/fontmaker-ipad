@@ -282,3 +282,87 @@ input[type="range"]{ width: 100%; }
   .controls{ grid-template-columns: 1fr; }
 }
 
+/* Intro tour (coach marks) */
+.tour-is-open .topbar,
+.tour-is-open .layout{
+  pointer-events: none;
+}
+
+.tourOverlay{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: auto;
+}
+.tourBackdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(1.5px);
+}
+.tourHighlight{
+  position: fixed;
+  border-radius: 14px;
+  border: 1px solid rgba(110,231,255,0.55);
+  box-shadow:
+    0 0 0 2px rgba(110,231,255,0.10),
+    0 22px 80px rgba(0,0,0,0.55);
+  background: rgba(110,231,255,0.06);
+}
+.tourPopover{
+  position: fixed;
+  width: min(360px, calc(100vw - 24px));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(17,22,28,0.98);
+  box-shadow: 0 30px 90px rgba(0,0,0,0.65);
+  padding: 12px;
+}
+.tourPopover__title{
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+.tourPopover__body{
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.35;
+  white-space: pre-wrap;
+}
+.tourActions{
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tourPopover::after{
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+}
+.tourPopover[data-side="right"]::after{
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-right-color: rgba(17,22,28,0.98);
+}
+.tourPopover[data-side="left"]::after{
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left-color: rgba(17,22,28,0.98);
+}
+.tourPopover[data-side="bottom"]::after{
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom-color: rgba(17,22,28,0.98);
+}
+.tourPopover[data-side="top"]::after{
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top-color: rgba(17,22,28,0.98);
+}
