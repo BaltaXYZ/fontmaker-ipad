@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>FontMaker iPad</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar__left">
+        <div class="brand">FontMaker</div>
+        <label class="field">
+          <span class="field__label">Fontnamn</span>
+          <input id="fontName" class="field__input" type="text" autocomplete="off" spellcheck="false" />
+        </label>
+      </div>
+
+      <div class="topbar__right">
+        <button id="btnExportOTF" class="btn btn--primary">Export OTF</button>
+        <button id="btnExportProject" class="btn">Export project (JSON)</button>
+        <button id="btnImportProject" class="btn">Import project (JSON)</button>
+        <input id="fileImport" type="file" accept="application/json" hidden />
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="sidebar">
+        <div class="sidebar__controls">
+          <div class="segmented" role="tablist" aria-label="Filter">
+            <button class="segmented__btn is-active" data-filter="all">All</button>
+            <button class="segmented__btn" data-filter="upper">A-Z</button>
+            <button class="segmented__btn" data-filter="lower">a-z</button>
+            <button class="segmented__btn" data-filter="digits">0-9</button>
+            <button class="segmented__btn" data-filter="swedish">ÅÄÖ</button>
+            <button class="segmented__btn" data-filter="punct">Punct</button>
+          </div>
+        </div>
+        <div class="glyphGrid" id="glyphGrid" aria-label="Teckenlista"></div>
+      </section>
+
+      <section class="workspace">
+        <div class="workspace__header">
+          <div class="glyphTitle">
+            <div class="glyphTitle__char" id="currentChar">A</div>
+            <div class="glyphTitle__meta" id="currentMeta"></div>
+          </div>
+          <div class="workspace__tools">
+            <button id="btnUndo" class="btn">Undo</button>
+            <button id="btnRedo" class="btn">Redo</button>
+            <button id="btnClear" class="btn btn--danger">Clear</button>
+          </div>
+        </div>
+
+        <div class="editorWrap">
+          <canvas id="editorCanvas" class="editorCanvas" width="1200" height="1200"></canvas>
+        </div>
+
+        <div class="controls">
+          <div class="control">
+            <div class="control__label">
+              <span>Brush width</span>
+              <span class="control__value" id="brushWidthValue"></span>
+            </div>
+            <input id="brushWidth" type="range" min="10" max="120" step="1" />
+          </div>
+
+          <div class="control">
+            <div class="control__label">
+              <span>Advance width</span>
+              <span class="control__value" id="advanceWidthValue"></span>
+            </div>
+            <input id="advanceWidth" type="range" min="200" max="1000" step="10" />
+          </div>
+        </div>
+
+        <section class="preview">
+          <div class="preview__row">
+            <label class="field field--wide">
+              <span class="field__label">Preview text</span>
+              <input id="previewText" class="field__input" type="text" autocomplete="off" spellcheck="false" />
+            </label>
+            <button id="btnBuildPreviewFont" class="btn">Build preview font</button>
+          </div>
+          <div class="preview__sample">
+            <div class="preview__label">Font preview</div>
+            <div id="fontPreview" class="fontPreview"></div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <dialog id="modal" class="modal">
+      <div class="modal__title" id="modalTitle"></div>
+      <div class="modal__body" id="modalBody"></div>
+      <div class="modal__actions">
+        <button id="modalClose" class="btn btn--primary">OK</button>
+      </div>
+    </dialog>
+
+    <script src="vendor/opentype.min.js"></script>
+    <script src="vendor/martinez.min.js"></script>
+    <script src="vendor/simplify.min.js"></script>
+    <script src="outline.js"></script>
+    <script src="editor.js"></script>
+    <script src="project-io.js"></script>
+    <script src="font-export.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
+
