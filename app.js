@@ -190,7 +190,7 @@
     }
 
     function applyEditorSizePx(px) {
-      const v = clamp(Number(px) || 780, 360, 900);
+      const v = clamp(Number(px) || 780, 240, 900);
       document.documentElement.style.setProperty('--editorSize', v + 'px');
       if (elEditorSizeValue) elEditorSizeValue.textContent = v + 'px';
       if (elEditorSize) elEditorSize.value = String(v);
