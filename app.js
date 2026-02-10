@@ -230,12 +230,17 @@
       for (const cp of cps) {
         const g = project.glyphs[String(cp)];
         const st = glyphStatus(project, g);
+        const req = isRequiredCodepoint(cp);
         const btn = document.createElement('button');
         btn.className = 'glyphBtn' + (String(cp) === activeId ? ' is-active' : '');
         btn.dataset.status = st;
+        if (req) btn.dataset.required = '1';
         btn.type = 'button';
-        btn.innerHTML = `<div class="glyphBtn__char"></div><div class="glyphBtn__dot"></div>`;
-        btn.querySelector('.glyphBtn__char').textContent = cpLabel(cp);
+        btn.innerHTML = `<div class="glyphBtn__char"></div><div class="glyphBtn__dot"></div><div class="glyphBtn__req" aria-hidden="true">★</div>`;
+        const label = cpLabel(cp);
+        btn.querySelector('.glyphBtn__char').textContent = label;
+        if (req) btn.setAttribute('aria-label', `${label} (obligatorisk), status: ${st}`);
+        else btn.setAttribute('aria-label', `${label}, status: ${st}`);
         btn.addEventListener('click', () => setCurrent(cp));
         elGrid.appendChild(btn);
       }
