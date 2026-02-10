@@ -142,7 +142,7 @@
     let currentCp = 'A'.codePointAt(0);
     let previewFontHandle = null;
     const LS_EDITOR_SIZE = 'fontmaker_editor_size_px';
-    const EDITOR_SIZE_MIN = 240;
+    const EDITOR_SIZE_MIN = 120;
     const EDITOR_SIZE_MAX = 900;
 
     const elFontName = document.getElementById('fontName');
