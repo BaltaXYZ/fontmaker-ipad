@@ -328,6 +328,18 @@ input[type="range"]{ width: 100%; }
   line-height: 1.35;
   white-space: pre-wrap;
 }
+.tourText{
+  white-space: pre-wrap;
+}
+.tourMedia{
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.03);
+}
 .tourActions{
   display: flex;
   justify-content: space-between;

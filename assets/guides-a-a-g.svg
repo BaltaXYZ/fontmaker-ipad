@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 240" width="520" height="240">
+  <defs>
+    <style>
+      .bg{fill:#0f1216;}
+      .panel{fill:rgba(255,255,255,0.03);stroke:rgba(255,255,255,0.10);stroke-width:1;}
+      .line{stroke:rgba(110,231,255,0.70);stroke-width:2;}
+      .line2{stroke:rgba(110,231,255,0.45);stroke-width:2;stroke-dasharray:4 4;}
+      .label{fill:rgba(231,237,245,0.88);font:700 12px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;}
+      .small{fill:rgba(168,179,194,0.95);font:600 11px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;}
+      .box{fill:rgba(110,231,255,0.08);stroke:rgba(110,231,255,0.35);stroke-width:1;}
+      .glyph{fill:rgba(231,237,245,0.95);font:900 64px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;}
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="520" height="240" rx="16"/>
+  <rect class="panel" x="12" y="12" width="496" height="216" rx="14"/>
+
+  <!-- Guide lines -->
+  <!-- cap-height -->
+  <line class="line" x1="24" y1="48" x2="496" y2="48"/>
+  <text class="label" x="26" y="40">cap-height</text>
+
+  <!-- x-height -->
+  <line class="line2" x1="24" y1="92" x2="496" y2="92"/>
+  <text class="small" x="26" y="84">x-height</text>
+
+  <!-- baseline -->
+  <line class="line" x1="24" y1="140" x2="496" y2="140"/>
+  <text class="label" x="26" y="132">baseline</text>
+
+  <!-- descender -->
+  <line class="line2" x1="24" y1="184" x2="496" y2="184"/>
+  <text class="small" x="26" y="176">descender</text>
+
+  <!-- Columns -->
+  <g transform="translate(0,0)">
+    <!-- A -->
+    <rect class="box" x="70" y="48" width="120" height="92" rx="12"/>
+    <text class="small" x="70" y="210">A: cap-height → baseline</text>
+    <text class="glyph" x="112" y="132">A</text>
+
+    <!-- a -->
+    <rect class="box" x="200" y="92" width="120" height="48" rx="12"/>
+    <text class="small" x="200" y="210">a: x-height → baseline</text>
+    <text class="glyph" x="248" y="132">a</text>
+
+    <!-- g -->
+    <rect class="box" x="330" y="92" width="120" height="92" rx="12"/>
+    <text class="small" x="330" y="210">g: x-height → descender</text>
+    <text class="glyph" x="372" y="176">g</text>
+  </g>
+</svg>
+

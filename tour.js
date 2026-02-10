@@ -23,7 +23,17 @@
     {
       title: 'Rityta',
       selector: '#editorCanvas',
-      body: 'Rita tecknet med Apple Pencil (eller finger). Hjälplinjerna visar baslinje, x-height och cap-height.',
+      body:
+        "Rita tecknet med Apple Pencil (eller finger).\n\n" +
+        "Baseline = där bokstäver står.\n" +
+        "x-height = höjden på små bokstäver som ‘a’.\n" +
+        "cap-height = höjden på versaler som ‘A’.\n" +
+        "descender = delar som går under baseline, t.ex. ‘g’.",
+      media: {
+        type: 'image',
+        src: 'assets/guides-a-a-g.svg',
+        alt: 'Exempel: A, a, g i förhållande till baseline, x-height, cap-height och descender.',
+      },
     },
     {
       title: 'Brush + Advance width',
@@ -264,7 +274,25 @@
   function updateContent(state) {
     const step = STEPS[state.stepIndex];
     state.title.textContent = step.title;
-    state.body.textContent = step.body;
+    state.body.textContent = '';
+
+    const text = document.createElement('div');
+    text.className = 'tourText';
+    text.textContent = step.body;
+    state.body.appendChild(text);
+
+    if (step.media && step.media.type === 'image' && step.media.src) {
+      const img = document.createElement('img');
+      img.className = 'tourMedia';
+      img.alt = step.media.alt || '';
+      img.src = step.media.src;
+      img.decoding = 'async';
+      img.loading = 'eager';
+      img.addEventListener('load', () => {
+        if (state.active && typeof state.onLayout === 'function') state.onLayout();
+      });
+      state.body.appendChild(img);
+    }
 
     state.btnBack.disabled = state.stepIndex === 0;
     state.btnNext.textContent = step.isLast ? 'Klar' : 'Nästa';
@@ -388,4 +416,3 @@
     startIntro,
   };
 })();
-
