@@ -141,6 +141,7 @@
     let currentFilter = 'all';
     let currentCp = 'A'.codePointAt(0);
     let previewFontHandle = null;
+    const LS_EDITOR_SIZE = 'fontmaker_editor_size_px';
 
     const elFontName = document.getElementById('fontName');
     const elIntro = document.getElementById('btnIntro');
@@ -151,6 +152,8 @@
     const elBrushWidthValue = document.getElementById('brushWidthValue');
     const elAdvanceWidth = document.getElementById('advanceWidth');
     const elAdvanceWidthValue = document.getElementById('advanceWidthValue');
+    const elEditorSize = document.getElementById('editorSize');
+    const elEditorSizeValue = document.getElementById('editorSizeValue');
     const elPreviewText = document.getElementById('previewText');
     const elFontPreview = document.getElementById('fontPreview');
     const elFileImport = document.getElementById('fileImport');
@@ -180,6 +183,29 @@
       elAdvanceWidth.value = String(g.advanceWidth || 600);
       elBrushWidthValue.textContent = String(g.brushWidth || 60);
       elAdvanceWidthValue.textContent = String(g.advanceWidth || 600);
+    }
+
+    function clamp(v, lo, hi) {
+      return Math.max(lo, Math.min(hi, v));
+    }
+
+    function applyEditorSizePx(px) {
+      const v = clamp(Number(px) || 780, 360, 900);
+      document.documentElement.style.setProperty('--editorSize', v + 'px');
+      if (elEditorSizeValue) elEditorSizeValue.textContent = v + 'px';
+      if (elEditorSize) elEditorSize.value = String(v);
+      try {
+        localStorage.setItem(LS_EDITOR_SIZE, String(v));
+      } catch (_e) {}
+    }
+
+    function loadEditorSizePx() {
+      let v = 780;
+      try {
+        const raw = localStorage.getItem(LS_EDITOR_SIZE);
+        if (raw != null) v = Number(raw);
+      } catch (_e) {}
+      applyEditorSizePx(v);
     }
 
     function renderHeader() {
@@ -254,6 +280,12 @@
       editor.requestRender();
       renderGrid();
     });
+
+    if (elEditorSize) {
+      elEditorSize.addEventListener('input', () => {
+        applyEditorSizePx(Number(elEditorSize.value));
+      });
+    }
 
     elFontName.value = project.fontName;
     elFontName.addEventListener('input', () => {
@@ -358,6 +390,7 @@
     renderHeader();
     editor.setGlyph(currentGlyph(), project.metrics);
     syncControlsFromGlyph();
+    loadEditorSizePx();
 
     // Start intro tour on first visit after initial layout has settled.
     requestAnimationFrame(() => {

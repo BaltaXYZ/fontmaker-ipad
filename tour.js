@@ -18,7 +18,7 @@
     {
       title: 'Verktyg per tecken',
       selector: '.workspace__tools',
-      body: 'Undo/Redo backar per stroke. Clear tömmer tecknet och gör att status går tillbaka.',
+      body: 'Ångra/Gör om backar per stroke. Rensa tömmer tecknet och gör att status går tillbaka.',
     },
     {
       title: 'Rityta',

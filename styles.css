@@ -10,6 +10,7 @@
   --danger: #ff5b5b;
   --ok: #67f5a5;
   --warn: #ffd56e;
+  --editorSize: 780px;
   --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
 }
 
@@ -150,8 +151,8 @@ body{
   place-items: center;
 }
 .editorCanvas{
-  width: min(72vh, 100%);
-  max-width: 780px;
+  width: min(72vh, 100%, var(--editorSize));
+  max-width: var(--editorSize);
   aspect-ratio: 1 / 1;
   border-radius: 14px;
   background:

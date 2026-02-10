@@ -47,9 +47,9 @@
             <div class="glyphTitle__meta" id="currentMeta"></div>
           </div>
           <div class="workspace__tools">
-            <button id="btnUndo" class="btn">Undo</button>
-            <button id="btnRedo" class="btn">Redo</button>
-            <button id="btnClear" class="btn btn--danger">Clear</button>
+            <button id="btnUndo" class="btn" aria-label="Ångra">Ångra</button>
+            <button id="btnRedo" class="btn" aria-label="Gör om">Gör om</button>
+            <button id="btnClear" class="btn btn--danger" aria-label="Rensa">Rensa</button>
           </div>
         </div>
 
@@ -72,6 +72,14 @@
               <span class="control__value" id="advanceWidthValue"></span>
             </div>
             <input id="advanceWidth" type="range" min="200" max="1000" step="10" />
+          </div>
+
+          <div class="control">
+            <div class="control__label">
+              <span>Skrivruta</span>
+              <span class="control__value" id="editorSizeValue"></span>
+            </div>
+            <input id="editorSize" type="range" min="360" max="900" step="10" />
           </div>
         </div>
 
